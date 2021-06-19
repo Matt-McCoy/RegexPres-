@@ -1,0 +1,134 @@
+---
+title: "Regular Expression"
+author: "Matt McCoy"
+output: 
+  xaringan::moon_reader:
+    css: [uo, metropolis, metropolis-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+keep_md: true
+---
+
+#Regular Expression 
+
+- A Regular Expression is a pattern that describes a specific set of strings with a common structure
+
+- String functions can take a character variable and a regular expression, and show you how they match
+
+- Some useful functions from the [stringr](https://github.com/hadley/stringr) package that are easier to use and remember
+
+---
+
+#String Functions and Regular Expression
+
+- Regex is used for string matching / replacing in all programming languages
+
+- Rstudio's search and replace allows regular expression
+
+- Example's of string functions:
+  - identify match to a pattern: `grep(..., value = FALSE)`, `grepl()`, `stringr::str_detect()`
+
+  - extract match to a pattern: `grep(..., value = TRUE)`, `stringr::str_extract()`, `stringr::str_extract_all()`
+
+  - start position of matched patterns. `regexpr()`, `gregexpr()`, `stringr::str_locate()`
+
+  - replace a pattern: `sub()`, `gsub()`, `stringr::str_replace()` 
+
+  - split a string using a pattern: `strsplit()`, `stringr::str_split()`
+
+---
+
+#Syntax
+
+- Regex utilizes metacharacters that have specific meaning: `$ * + . ? [ ] ^ { } | ( ) \` to find what we are looking for within the string. 
+
+- Escape Sequences
+
+- Quantifiers
+
+- Position Within the string
+
+- Operators
+
+- Character Classes
+
+---
+
+#Escape Sequences
+
+-  Some special characters in R cannot be directly coded in a string (i.e `'`)
+
+- We have to "escape" the single quote in the pattern, by preceding it with `\`
+
+- Some characters that require escaping:
+  - `\'`: single quote.
+  - `\"`: double quote.           
+  - `\n`: newline.   
+  - `\r`: carriage return.   
+  - `\t`: tab character.  
+
+---
+
+#Quantifiers
+
+- specifies the amount of repetitions of the pattern
+
+  - `*`: matches at least 0 times.   
+  - `+`: matches at least 1 times.     
+  - `?`: matches at most 1 times.    
+  - `{n}`: matches exactly n times.    
+  - `{n,}`: matches at least n times.    
+  - `{n,m}`: matches between n and m times.
+  
+---
+  
+#Pattern Position Within the String  
+
+- Specifies where the match will be located in the string or word 
+
+  - `^`: matches the start of the string.   
+  - `$`: matches the end of the string.   
+  - `\b`: matches the empty string at either edge of a _word_. Don't confuse it with `^ $` which marks the edge of a _string_.
+  - `\B`: matches the empty string provided it is not at an edge of a word.
+
+---
+
+#Operators 
+
+  - `.`: matches any single character.
+  - `[...]`: a character list, matches any one of the characters inside the square brackets. 
+  - `[^...]`: an inverted character list. Matches any characters __except__ those inside the square brackets.  
+  - `\`: suppress the special meaning of metacharacters in regular expression. Because `\` itself needs to be escaped in R, we must escape this metacharacter with a double backslash like `\\$`.   
+  - `|`: an "or" operator. Matches patterns on either side of the `|`.  
+  - `(...)`: grouping in regular expressions. 
+  
+---
+  
+##Character Classes
+
+- Allow us to specify entire classes of characters like numbers or letters
+
+- Two Types:
+- One uses  `[:` and `:]` around a predefined name
+- The other uses `\` and a special character
+  
+  - `[:digit:]` or `\d`: digits, equivalent to `[0-9]`.  
+  - `\D`: non-digits, equivalent to `[^0-9]`.  
+  - `[:lower:]`: lower-case letters, equivalent to `[a-z]`.  
+  - `[:upper:]`: upper-case letters, equivalent to `[A-Z]`.
+  - `[:punct:]`: punctuation characters.
+  - `[:alnum:]`: alphanumeric characters.
+  
+---
+  
+##Resources
+
+[Regular Expression in R](https://github.com/STAT545-UBC/STAT545-UBC-original-website/blob/master/block022_regular-expression.md) 
+
+[Regex Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf)
+
+[RegExplain](https://www.garrickadenbuie.com/project/regexplain/)
+
